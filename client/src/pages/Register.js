@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
+import { AuthContext } from '../context/auth';
 import { useForm } from '../util/hooks';
 
 function Register(props) {
+  const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: '',
     email: '',
     password: '',
-    name: ''
+    confirmPassword: ''
   });
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, result) {
+    update(
+      _,
+      {
+        data: { register: userData }
+      }
+    ) {
+      context.login(userData);
       props.history.push('/');
     },
     onError(err) {
-        setErrors(err&&err.graphQLErrors[0]?err.graphQLErrors[0].extensions.exception.errors:{});
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: values
   });
@@ -42,15 +50,6 @@ function Register(props) {
           error={errors.username ? true : false}
           onChange={onChange}
         />
-           <Form.Input
-          label="Name"
-          placeholder="Name.."
-          name="name"
-          type="text"
-          value={values.name}
-          error={errors.name ? true : false}
-          onChange={onChange}
-        />
         <Form.Input
           label="Email"
           placeholder="Email.."
@@ -69,8 +68,16 @@ function Register(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
-     
-        <Button type="submit" color='red'>
+        <Form.Input
+          label="Confirm Password"
+          placeholder="Confirm Password.."
+          name="confirmPassword"
+          type="password"
+          value={values.confirmPassword}
+          error={errors.confirmPassword ? true : false}
+          onChange={onChange}
+        />
+        <Button type="submit" color="red">
           Register
         </Button>
       </Form>
@@ -92,20 +99,18 @@ const REGISTER_USER = gql`
     $username: String!
     $email: String!
     $password: String!
-    $name: String!
+    $confirmPassword: String!
   ) {
     register(
       registerInput: {
         username: $username
-        name: $name
         email: $email
         password: $password
-        
+        confirmPassword: $confirmPassword
       }
     ) {
       id
       email
-      name
       username
       createdAt
       token
