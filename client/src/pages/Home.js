@@ -1,39 +1,35 @@
-import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, {useContext} from 'react'
+import { Grid, Message } from 'semantic-ui-react'
+
+
+import { AuthContext } from '../context/auth';
+
 
 
 function Home(){
 
-    // const {
-    //     loading,
-    //     data: { getUsers: users }
-    //   } = useQuery(FETCH_USERS_QUERY);
-    
-    return(
-        <Card>
-        <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Name</Card.Header>
-          <Card.Description>
-            Username: 
-          </Card.Description>
-          <Card.Description>
-            Email: 
-          </Card.Description>
-        </Card.Content>
-      </Card>
-    )
-}
+const { user } = useContext(AuthContext);
 
-const FETCH_USERS_QUERY = gql`
-  {
-    getUsers {
-      id
-      username
-      email
-    }
-  }
-`;
+    return(
+
+        <Grid columns={1}>
+        <Grid.Row>
+            {user &&
+                (
+              <Message style={{width: "800px", marginLeft: "15%"}}><h1>Welcome {user.username}!</h1>
+              <Message.Header key={user.id} style={{ marginBottom: 20 }}>Your Info</Message.Header>
+              <Message.List>
+              <Message.Item name={user.name}>Name: {user.name}</Message.Item>
+            <Message.Item username={user.username}>Username: {user.username}</Message.Item>
+            <Message.Item email={user.email}>Email: {user.email}</Message.Item>
+             </Message.List>
+            </Message>
+            )
+          }
+        </Grid.Row>
+      </Grid>
+
+    )};
+
+
 export default Home;
