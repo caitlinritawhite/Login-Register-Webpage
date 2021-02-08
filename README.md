@@ -5,7 +5,7 @@ Heroku Link: http://immense-coast-38554.herokuapp.com/
   
 ## Video Demonstration
 ### Login and Register Page 
-![Video Demo](https://user-images.githubusercontent.com/62992911/107230838-8c7b7980-69ed-11eb-995d-84ac6db06270.mp4)  
+![Video Demo](https://user-images.githubusercontent.com/62992911/107233830-fd706080-69f0-11eb-8914-780836bae4ab.gif)  
 ### Form Validation, User Authentication and Route Protection  
 ![Video Demo](https://user-images.githubusercontent.com/62992911/107230969-b634a080-69ed-11eb-87ca-d07511ae8aeb.mp4)  
 ## Register Page  
