@@ -10,9 +10,7 @@ const resolvers = require('./graphQL/resolvers');
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  introspection: true,
-  playground: false
+  resolvers
 });
 
 // app.use(express.urlencoded({ extended: true }));
