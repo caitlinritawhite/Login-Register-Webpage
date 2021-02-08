@@ -7,7 +7,7 @@ Heroku Link: http://immense-coast-38554.herokuapp.com/
 ### Login and Register Page 
 ![Video Demo](https://user-images.githubusercontent.com/62992911/107234483-b6cf3600-69f1-11eb-94bd-f8b098a17bb9.gif)  
 ### Form Validation, User Authentication and Route Protection  
-![Video Demo](https://user-images.githubusercontent.com/62992911/107234364-956e4a00-69f1-11eb-8b16-09e1ee3809e7.gif)  
+![Video Demo](https://user-images.githubusercontent.com/62992911/107235814-137f2080-69f3-11eb-8f56-4e7c5a242502.gif)  
 
 ## Overview  
 This application is a register and login form  with a homepage dashboard that displays the information collected. This application includes password encryption, authentication, route protection and form validation. 
