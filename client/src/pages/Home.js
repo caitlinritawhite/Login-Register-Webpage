@@ -19,7 +19,7 @@ const { user } = useContext(AuthContext);
               <Message style={{width: "800px", marginLeft: "15%"}}><h1>Welcome {user.username}!</h1>
               <Message.Header key={user.id} style={{ marginBottom: 20 }}>Your Info</Message.Header>
               <Message.List>
-              <Message.Item name={user.name}>Name: Caitlin</Message.Item>
+              <Message.Item name={user.name}>Name: {user.name}</Message.Item>
             <Message.Item username={user.username}>Username: {user.username}</Message.Item>
             <Message.Item email={user.email}>Email: {user.email}</Message.Item>
              </Message.List>
